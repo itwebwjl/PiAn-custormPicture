@@ -24,6 +24,10 @@ export default new Router({
     {
       path: '/duiwaitouzi',
       component: resolve => require(['../page/duiwaitouzi.vue'], resolve)
+    },
+    {
+      path: '/gongshangxinxi',
+      component: resolve => require(['../page/gongshangxinxi.vue'], resolve)
     }
   ]
 })
