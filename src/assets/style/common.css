@@ -83,6 +83,13 @@
   align-items: center;
 }
 
+.flex-cb {
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: column;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+}
 
 .flex-wrap {
   display: -webkit-box;
