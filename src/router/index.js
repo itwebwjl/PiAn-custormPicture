@@ -12,6 +12,10 @@ export default new Router({
     {
       path: "/2",
       component:resolve => require(['../page/2.vue'],resolve)
+    },
+    {
+      path: "/3",
+      component:resolve => require(['../page/3/3.vue'],resolve)
     }
   ]
 })

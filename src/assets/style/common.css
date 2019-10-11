@@ -5,8 +5,11 @@
   display: flex;
 }
 
-.column{
+.column {
   flex-direction: column
+}
+.start {
+  justify-content: flex-start;
 }
 
 .flex-rc {
@@ -79,6 +82,7 @@
   -webkit-align-items: center;
   align-items: center;
 }
+
 
 .flex-wrap {
   display: -webkit-box;
