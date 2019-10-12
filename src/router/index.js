@@ -32,6 +32,10 @@ export default new Router({
     {
       path: '/biangengxinxi',
       component: resolve => require(['../page/biangengxinxi.vue'], resolve)
+    },
+    {
+      path: '/lishihezuo',
+      component: resolve => require(['../page/lishihezuo.vue'], resolve)
     }
   ]
 })
