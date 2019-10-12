@@ -10,7 +10,7 @@ import './assets/js/move-phone'
 import Vant from 'vant';
 import 'vant/lib/index.css';
 
-Vue.use(Vant) 
+Vue.use(Vant)
 
 Vue.config.productionTip = false
 
@@ -19,6 +19,6 @@ new Vue({
   el: '#app',
   router,
   store,
-  components: { App },
+  components: {App},
   template: '<App/>'
 })
