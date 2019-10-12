@@ -1,7 +1,7 @@
 <template>
   <div class="page-container">
     <van-list>
-      <div class="shareholder-item" v-for="n in 4">
+      <div class="shareholder-item" v-for="(item,index) in 4" :key="index">
         <div class="shareholder-item__top">
           <span class="shareholder-item__name">雷军</span>
         </div>

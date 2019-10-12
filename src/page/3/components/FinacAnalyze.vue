@@ -1,7 +1,7 @@
 <template>
   <div class="fina-analyze">
-    <van-tabs v-model="active" animated @change="switchTab">
-      <van-tab v-for="(item,index) in tabs" :title="item" :key="index">
+    <van-tabs v-model="active" animated @click="switchTab" title-active-color="#FF7635" title-inactive-color="#666666" color="#fff">
+      <van-tab title="渠道分析">
         <div v-show="active == 0">
           <div class="one">
             <div id="chart2" style="height:3rem;"></div>
@@ -23,6 +23,8 @@
             </div>
           </div>
         </div>
+      </van-tab>
+      <van-tab title="期限分析">
         <div v-show="active == 1">
           <div class="one">
             <div class="titile">企业融资总额30亿元</div>
@@ -33,8 +35,22 @@
             </div>
             <div id="chart3" style="height:3rem;"></div>
           </div>
-
-          <div class="two"></div>
+          <div class="two">
+            <div class="two-title flex-rb-cc">
+              <div class="two-th flex start">序号</div>
+              <div class="two-th">融资渠道</div>
+              <div class="two-th">融资类型</div>
+              <div class="two-th">融资金额(万元)</div>
+              <div class="two-th">融资占比</div>
+            </div>
+            <div class="two-item flex-rb-cc" v-for="(item,index) in 4" :key="index">
+              <div class="two-td flex start">{{index+1}}</div>
+              <div class="two-td">平安银行深圳福田支行</div>
+              <div class="two-td">银行贷款</div>
+              <div class="two-td">70000</div>
+              <div class="two-td">32.59%</div>
+            </div>
+          </div>
         </div>
       </van-tab>
     </van-tabs>
@@ -55,7 +71,7 @@
   export default {
     data() {
       return {
-        active: 1,
+        active: 0,
         tabs: ["渠道分析", "期限分析"],
         chart2: null,
         chart3: null,
@@ -129,18 +145,17 @@
     },
     mounted() {
       this.$nextTick(() => {
-        // this.chart3 = echarts.init(document.getElementById("chart3"));
-        // this.chart3.setOption(this.chart3Options);
         this.chart2 = echarts.init(document.getElementById("chart2"));
         this.chart2.setOption(this.chart2Options);
       });
     },
     methods: {
-      switchTab(index) {
-        if (index == 0) {
-        } else if (index == 1) {
+      switchTab() {
+        if (!this.chart3) {
+          // this.chart3 = echarts.init(document.getElementById("chart3"));
+          // this.chart3.setOption(this.chart3Options);
           this.$nextTick(() => {
-            // this.chart3 = echarts.init(document.getElementById("chart3"));
+            this.chart3 = echarts.init(document.getElementById("chart3"));
             this.chart3.setOption(this.chart3Options);
           });
         }
