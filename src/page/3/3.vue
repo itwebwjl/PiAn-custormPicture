@@ -1,6 +1,6 @@
 <template>
   <div class="financing-detail">
-    <van-tabs v-model="active" swipeable title-active-color="#FF7635" title-inactive-color="#666666" color="#FF7635" line-width=".56rem" line-height=".02rem">
+    <van-tabs sticky v-model="active" swipeable title-active-color="#FF7635" title-inactive-color="#666666" color="#FF7635" line-width=".56rem" line-height=".02rem">
       <!-- <van-tab v-for="(item,index) in tabs" :title="item" :key="index">
         <div v-show="active == 0">
             <financDes></financDes>
@@ -18,7 +18,7 @@
       <van-tab title="融资分析">
         <finacAnalyze></finacAnalyze>
       </van-tab>
-      <van-tab title="银行贷款">
+      <van-tab title="银行授信">
         <BankLoan></BankLoan>
       </van-tab>
       <van-tab title="信托融资">
@@ -30,7 +30,9 @@
       <van-tab title="股权融资">
         <StockMoney></StockMoney>
       </van-tab>
-      <van-tab title="债券融资"></van-tab>
+      <van-tab title="债券融资">
+        <debtFinance></debtFinance>
+      </van-tab>
     </van-tabs>
   </div>
 </template>
@@ -42,10 +44,11 @@
   import Believeharmony from "./components/Believeharmony.vue";
   import TradeHarmony from "./components/TradeHarmony.vue";
   import StockMoney from "./components/StockMoney.vue";
+  import debtFinance from "./components/debtFinance.vue";
   export default {
     data() {
       return {
-        active: 5,
+        active: 1,
       };
     },
     components: {
@@ -54,7 +57,8 @@
       BankLoan,
       Believeharmony,
       TradeHarmony,
-      StockMoney
+      StockMoney,
+      debtFinance
     }
   };
 </script>

@@ -2,23 +2,74 @@
   <div class="bank-loan">
     <div class="one">
       <div id="chart4" style="height:3rem;"></div>
+      <div class="one-bot">
+        <div class="end-time flex-rb-cc">
+          <div class="txt">截止日期</div>
+          <div class="time flex-cc">
+            <div class="left-arrow"></div>
+            <div class="swiper">2018-12-31 2018-09-30</div>
+            <div class="right-arrow"></div>
+          </div>
+        </div>
+        <div class="item flex">
+          <div class="item-label">融资金额</div>
+          <div class="item-txt flex-re">2018-09-30</div>
+          <div class="item-txt flex-re">2018-09-30</div>
+        </div>
+        <div class="item flex">
+          <div class="item-label">授权总额</div>
+          <div class="item-txt flex-re">3838.00亿元</div>
+          <div class="item-txt flex-re">3580.00亿元</div>
+        </div>
+        <div class="item flex">
+          <div class="item-label">已使用</div>
+          <div class="item-txt flex-re">2090.00亿元</div>
+          <div class="item-txt flex-re">2090.00亿元</div>
+        </div>
+        <div class="item flex">
+          <div class="item-label">未使用</div>
+          <div class="item-txt flex-re">2090.00亿元</div>
+          <div class="item-txt flex-re">2090.00亿元</div>
+        </div>
+        <div class="item flex">
+          <div class="item-label">授信家数</div>
+          <div class="item-txt flex-re">-</div>
+          <div class="item-txt flex-re">6家</div>
+        </div>
+      </div>
     </div>
     <div class="two">
       <div class="two-title flex-rb-cc">
-        <div class="two-th flex start">序号</div>
-        <div class="two-th">融资渠道</div>
-        <div class="two-th">融资类型</div>
-        <div class="two-th">融资金额(万元)</div>
-        <div class="two-th">融资占比</div>
+        <div class="two-title_left">授信明细</div>
+        <div class="two-title_right" @click="showPickFn">图标 2018-12-31</div>
       </div>
-      <div class="two-item flex-rb-cc" v-for="(item,index) in 4" :key="index">
-        <div class="two-td flex start">{{index+1}}</div>
-        <div class="two-td">平安银行深圳福田支行</div>
-        <div class="two-td">银行贷款</div>
-        <div class="two-td">70000</div>
-        <div class="two-td">32.59%</div>
+      <div class="middle">
+        <div class="middle-tr flex">
+          <div class="middle-th flex-rc-cc">授信机构</div>
+          <div class="middle-th flex-rc-cc">授信额度</div>
+          <div class="middle-th flex-rc-cc">
+            已使用
+            <br>(亿元)
+          </div>
+          <div class="middle-th flex-rc-cc">
+            未使用
+            <br>(亿元)
+          </div>
+        </div>
+      </div>
+      <div class="bottom">
+        <div class="bottom-item flex" v-for="(item,index) in 4" :key="index">
+          <div class="bottom-td flex-cc">中国工商银行股份有限公司</div>
+          <div class="bottom-td flex-rc-cc">850.00</div>
+          <div class="bottom-td flex-rc-cc">398.65</div>
+          <div class="bottom-td flex-rc-cc">451.35</div>
+        </div>
       </div>
     </div>
+
+    <van-popup v-model="isShowPick" position="bottom"> 
+       <van-picker confirm-button-text="完成" show-toolbar :columns="columns"/>
+    </van-popup>
   </div>
 </template>
 
@@ -36,40 +87,56 @@
   export default {
     data() {
       return {
+        currentDate: new Date(),
         chart4: null,
         chart4Options: {
-          roseType: "angle",
+          // title: {
+          //   text: "国庆节快乐"
+          // },
+          tooltip: {
+            trigger: "axis"
+          },
+          xAxis: {
+            data: ["银行", "产险", "养老险", "租赁"]
+          },
+          yAxis: {
+            name: "个"
+          },
           legend: {
             bottom: 0,
-            right: "5%",
-            data: [
-              "JDG",
-              "平安银行",
-              "红衫资",
-              "今日资产",
-              "皇庭国际",
-              "其他渠道"
-            ]
+            left: "center",
+            data: ["1", "2"]
           },
           series: [
             {
-              name: "访问来源",
-              type: "pie",
-              radius: "55%",
-              data: [
-                { value: 235, name: "JDG" },
-                { value: 274, name: "平安银行" },
-                { value: 310, name: "红衫资" },
-                { value: 335, name: "今日资产" },
-                { value: 400, name: "皇庭国际" },
-                { value: 400, name: "其他渠道" }
-              ]
+              name: "1",
+              type: "bar",
+              data: [12, 5, 4, 4]
+            },
+            {
+              name: "2",
+              type: "bar",
+              data: [2, 30, 1, 10, 3, 30]
             }
+            // {
+            //   name: "3",
+            //   type: "bar",
+            //   data: [10, 30, 1, 2, 10, 20]
+            // }
           ]
-        }
+        },
+        isShowPick: false,
+        columns: ['2018-12-31', '2018-12-31', '2018-12-31','2018-12-31','2018-12-31'],
       };
     },
-    methods: {},
+    methods: {
+      showPickFn() {
+        // console.log(123)
+        // console.log(this.isShowPick)
+        // let a = !this.isShowPick
+        this.isShowPick = !this.isShowPick;
+      }
+    },
     mounted() {
       this.$nextTick(() => {
         this.chart4 = echarts.init(document.getElementById("chart4"));
@@ -83,6 +150,93 @@
   .bank-loan {
     .one {
       background: #fff;
+      margin-top: 0.1rem;
+      .one-bot {
+        padding: 0 0.15rem;
+        .end-time {
+          height: 0.5rem;
+          color: #333333;
+          .txt {
+            font-weight: bold;
+          }
+          .time {
+            .left-arrow {
+              // width: 50px;
+              // height: 50px;
+              border: 0.08rem solid;
+              border-color: #fff #000 #fff #fff;
+            }
+            .swiper {
+              font-weight: bold;
+              padding: 0 0.1rem;
+            }
+            .right-arrow {
+              border: 0.08rem solid;
+              border-color: #fff #fff #fff #000;
+            }
+          }
+        }
+        .item {
+          padding-bottom: 0.15rem;
+          .item-label {
+            font-size: 0.14rem;
+            flex: 1;
+            color: #999999;
+          }
+          .item-txt {
+            font-size: 0.14rem;
+            flex: 1;
+            color: #333;
+          }
+        }
+      }
+    }
+    .two {
+      margin-top: 0.1rem;
+      background: #fff;
+      .two-title {
+        padding: 0 0.15rem;
+        height: 0.5rem;
+        color: #333;
+        font-weight: bold;
+        .two-title_left {
+          color: #333;
+          font-weight: bold;
+        }
+        .two-title_right {
+        }
+      }
+      .middle {
+        .middle-tr {
+          padding: 0 0.15rem;
+          height: 0.6rem;
+          background: rgba(247, 247, 247, 1);
+          border: 1px solid rgba(232, 232, 232, 1);
+          .middle-th {
+            color: #999999;
+            flex: 1;
+            font-size: 0.13rem;
+            &:nth-of-type(1) {
+              flex: 2;
+            }
+          }
+        }
+      }
+      .bottom {
+        padding: 0 0.15rem;
+        .bottom-item {
+          height: 0.56rem;
+          .bottom-td {
+            color: #333;
+            font-size: 0.14rem;
+            flex: 1;
+            text-align: center;
+            &:nth-of-type(1) {
+              flex: 2;
+            }
+          }
+        }
+      }
     }
   }
 </style>

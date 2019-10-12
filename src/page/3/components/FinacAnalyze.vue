@@ -1,6 +1,13 @@
 <template>
   <div class="fina-analyze">
-    <van-tabs v-model="active" animated @click="switchTab" title-active-color="#FF7635" title-inactive-color="#666666" color="#fff">
+    <van-tabs
+      v-model="active"
+      animated
+      @click="switchTab"
+      title-active-color="#FF7635"
+      title-inactive-color="#666666"
+      color="#fff"
+    >
       <van-tab title="渠道分析">
         <div v-show="active == 0">
           <div class="one">
@@ -27,11 +34,10 @@
       <van-tab title="期限分析">
         <div v-show="active == 1">
           <div class="one">
-            <div class="titile">企业融资总额30亿元</div>
-            <div class="tabs flex">
-              <div class="tab-left flex-rc-cc">3个月</div>
-              <div class="tab-middle flex-rc-cc">半年</div>
-              <div class="tab-right flex-rc-cc">一年</div>
+            <div class="titile flex-rc-cc">剩余期限分析图</div>
+            <div class="month-wrap flex-re-cc">
+              <div class="month-txt">跨度选择：</div>
+              <div class="month" @click="isShowMonthFn">3个月</div>
             </div>
             <div id="chart3" style="height:3rem;"></div>
           </div>
@@ -39,9 +45,9 @@
             <div class="two-title flex-rb-cc">
               <div class="two-th flex start">序号</div>
               <div class="two-th">融资渠道</div>
-              <div class="two-th">融资类型</div>
               <div class="two-th">融资金额(万元)</div>
-              <div class="two-th">融资占比</div>
+              <div class="two-th">期限</div>
+              <div class="two-th">利率</div>
             </div>
             <div class="two-item flex-rb-cc" v-for="(item,index) in 4" :key="index">
               <div class="two-td flex start">{{index+1}}</div>
@@ -54,6 +60,10 @@
         </div>
       </van-tab>
     </van-tabs>
+    
+    <van-popup v-model="isShowMonth" position="bottom">
+      <van-picker confirm-button-text="完成" show-toolbar :columns="columns"/>
+    </van-popup>
   </div>
 </template>
 
@@ -71,8 +81,10 @@
   export default {
     data() {
       return {
+        isShowMonth:false,
         active: 0,
         tabs: ["渠道分析", "期限分析"],
+        columns: ['3个月', '半年', '一年'],
         chart2: null,
         chart3: null,
         chart2Options: {
@@ -152,13 +164,14 @@
     methods: {
       switchTab() {
         if (!this.chart3) {
-          // this.chart3 = echarts.init(document.getElementById("chart3"));
-          // this.chart3.setOption(this.chart3Options);
           this.$nextTick(() => {
             this.chart3 = echarts.init(document.getElementById("chart3"));
             this.chart3.setOption(this.chart3Options);
           });
         }
+      },
+      isShowMonthFn(){
+        this.isShowMonth = !this.isShowMonth;
       }
     }
   };
@@ -172,33 +185,21 @@
       padding: 0 0.15rem;
       .titile {
         color: #333333;
-        padding: 0.2rem 0;
+        height: 0.5rem;
         font-weight: bold;
       }
-      .tabs {
-        border: solid 1px #ff7e40;
-        height: 0.3rem;
-        border-radius: 0.04rem;
-        .tab-left {
-          flex: 1;
-          background: rgba(255, 235, 225, 1);
-          color: #ff7635;
+      .month-wrap {
+        .month-txt {
+          color: #666666;
           font-size: 0.14rem;
-          border-right: solid 1px #ff7e40;
         }
-        .tab-middle {
-          flex: 1;
-          height: 0.3rem;
-          color: #ff7635;
-          font-size: 0.14rem;
-          border-right: solid 1px #ff7e40;
-        }
-        .tab-right {
-          flex: 1;
-          height: 0.3rem;
-          color: #ff7635;
-          font-size: 0.14rem;
-          // border-right: solid 1px #FF7E40;
+        .month {
+          width: .75rem;
+          height: .24rem;
+          background: rgba(255, 255, 255, 1);
+          border: 1px solid rgba(221, 221, 221, 1);
+          border-radius: .12rem;
+          padding-left: .11rem;
         }
       }
     }
@@ -206,7 +207,7 @@
       background: #fff;
       margin-top: 0.1rem;
       .two-title {
-        height: 0.41rem;
+        height: 0.6rem;
         border-bottom: solid 1px rgba(232, 232, 232, 1);
         padding: 0 0.15rem;
         .two-th {
@@ -214,18 +215,29 @@
           color: #999999;
           font-size: 0.13rem;
           text-align: center;
-          // white-space: nowrap;
+          &:nth-of-type(2) {
+            flex: 1.5;
+          }
+          &:nth-of-type(1) {
+            flex: 0.5;
+          }
         }
       }
       .two-item {
         margin: 0 0.15rem;
-        height: 0.45rem;
+        height: 0.55rem;
         border-bottom: solid 1px rgba(232, 232, 232, 1);
         .two-td {
           color: #333333;
           font-size: 0.14rem;
           flex: 1;
           text-align: center;
+          &:nth-of-type(2) {
+            flex: 1.5;
+          }
+          &:nth-of-type(1) {
+            flex: 0.5;
+          }
         }
       }
     }

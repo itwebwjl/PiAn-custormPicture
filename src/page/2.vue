@@ -1,6 +1,6 @@
 <template>
   <section class="history-partner">
-    <van-tabs v-model="active" swipeable :swipe-threshold="5">
+    <van-tabs v-model="active" swipeable :swipe-threshold="5" sticky>
       <van-tab v-for="(item,index) in tabs" :title="item" :key="index">
         <div v-show="active == 0" class="one-wrap">
           <div class="one">

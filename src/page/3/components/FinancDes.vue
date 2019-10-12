@@ -1,7 +1,7 @@
 <template>
   <div class="financ-des">
     <div class="one">
-      <div class="one-title">债权融资各年度总额趋势</div>
+      <div class="one-title flex-rc-cc">债权融资各年度总额趋势</div>
       <div id="chart1" style="height:3rem;"></div>
     </div>
     <div class="two">
@@ -91,13 +91,14 @@
 
 <style lang="scss" scoped>
   .financ-des {
+    margin-top: 0.1rem;
+    padding-bottom: .27rem;
     .one {
       background-color: #fff;
-      margin-top: 0.1rem;
       .one-title {
         color: #333333;
         font-weight: bold;
-        padding: 0.26rem 0 0.16rem 0;
+        height: .5rem;
       }
     }
     .two {
@@ -118,6 +119,9 @@
         margin: 0 0.15rem;
         height: 0.45rem;
         border-bottom: solid 1px rgba(232, 232, 232, 1);
+        &:last-of-type {
+          border-bottom: none;
+        }
         .two-td {
           color: #333333;
           font-size: 0.14rem;

@@ -18,6 +18,10 @@ export default new Router({
       component:resolve => require(['../page/3/3.vue'],resolve)
     },
     {
+      path: "/debtDetail",
+      component:resolve => require(['../page/3/debtDetail.vue'],resolve)
+    },
+    {
       path: "/gudong",
       component:resolve => require(['../page/gudong.vue'],resolve)
     },
