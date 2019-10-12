@@ -11,7 +11,7 @@ import Vant from 'vant';
 import 'vant/lib/index.css';
 import './assets/style/iconfont/iconfont.css';
 
-Vue.use(Vant) 
+Vue.use(Vant)
 
 Vue.config.productionTip = false
 
@@ -20,6 +20,6 @@ new Vue({
   el: '#app',
   router,
   store,
-  components: { App },
+  components: {App},
   template: '<App/>'
 })
