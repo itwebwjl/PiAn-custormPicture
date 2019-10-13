@@ -10,7 +10,8 @@ import './assets/js/move-phone'
 import Vant from 'vant';
 import 'vant/lib/index.css';
 import './assets/style/iconfont/iconfont.css';
-
+import '@/mock/index.js'
+import '@/utils/index.js'
 Vue.use(Vant)
 
 Vue.config.productionTip = false

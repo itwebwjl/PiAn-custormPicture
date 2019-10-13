@@ -47,6 +47,11 @@
           {label: '好医生', name: 'haoyisheng'}]
       }
     },
+    mounted() {
+      Utils.Http.$get('/test/test').then(res=>{
+        console.log(res)
+      })
+    },
     methods: {}
   }
 </script>
