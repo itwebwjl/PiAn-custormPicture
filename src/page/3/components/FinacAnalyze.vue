@@ -60,7 +60,7 @@
         </div>
       </van-tab>
     </van-tabs>
-    
+
     <van-popup v-model="isShowMonth" position="bottom">
       <van-picker confirm-button-text="完成" show-toolbar :columns="columns"/>
     </van-popup>
@@ -81,38 +81,110 @@
   export default {
     data() {
       return {
-        isShowMonth:false,
+        isShowMonth: false,
         active: 0,
         tabs: ["渠道分析", "期限分析"],
-        columns: ['3个月', '半年', '一年'],
+        columns: ["3个月", "半年", "一年"],
         chart2: null,
         chart3: null,
         chart2Options: {
-          roseType: "angle",
+          title: {
+            text: "30亿元",
+            subtext: "企业融资总额",
+            x: "center",
+            y: "130",
+            textStyle: {
+              fontSize: 18,
+              fontWeight: "bold",
+              color: ["#333"]
+            },
+            subtextStyle: {
+              color: "#999999",
+              fontSize: 14
+            }
+          },
+          grid: {
+            top: 0,
+            left: 0,
+            
+          },
           legend: {
             bottom: 0,
-            right: "5%",
+            left: "center",
+            itemGap: 20,
+            itemWidth: 10,
+            itemHeight: 10,
             data: [
               "JDG",
               "平安银行",
               "红衫资",
               "今日资产",
               "皇庭国际",
-              "其他渠道"
+              "其他渠道",
+              "未知"
             ]
           },
           series: [
             {
-              name: "访问来源",
               type: "pie",
-              radius: "55%",
+              radius: ["40%", "51%"],
+              center: ["50%", "50%"],
+              labelLine: {
+                show: false
+              },
+              label: {
+                show: false
+              },
               data: [
-                { value: 235, name: "JDG" },
-                { value: 274, name: "平安银行" },
-                { value: 310, name: "红衫资" },
-                { value: 335, name: "今日资产" },
-                { value: 400, name: "皇庭国际" },
-                { value: 400, name: "其他渠道" }
+                {
+                  value: 235,
+                  name: "JDG",
+                  itemStyle: {
+                    color: "#4997FC"
+                  }
+                },
+                {
+                  value: 274,
+                  name: "平安银行",
+                  itemStyle: {
+                    color: "#00d795"
+                  }
+                },
+                {
+                  value: 310,
+                  name: "红衫资",
+                  itemStyle: {
+                    color: "#ffbf06"
+                  }
+                },
+                {
+                  value: 335,
+                  name: "今日资产",
+                  itemStyle: {
+                    color: "#ff7635"
+                  }
+                },
+                {
+                  value: 400,
+                  name: "皇庭国际",
+                  itemStyle: {
+                    color: "#a647e9"
+                  }
+                },
+                {
+                  value: 400,
+                  name: "其他渠道",
+                  itemStyle: {
+                    color: "#c0b4f5"
+                  }
+                },
+                {
+                  value: 100,
+                  name: "未知",
+                  itemStyle: {
+                    color: "#d6d6d6"
+                  }
+                }
               ]
             }
           ]
@@ -170,7 +242,7 @@
           });
         }
       },
-      isShowMonthFn(){
+      isShowMonthFn() {
         this.isShowMonth = !this.isShowMonth;
       }
     }
@@ -194,12 +266,12 @@
           font-size: 0.14rem;
         }
         .month {
-          width: .75rem;
-          height: .24rem;
+          width: 0.75rem;
+          height: 0.24rem;
           background: rgba(255, 255, 255, 1);
           border: 1px solid rgba(221, 221, 221, 1);
-          border-radius: .12rem;
-          padding-left: .11rem;
+          border-radius: 0.12rem;
+          padding-left: 0.11rem;
         }
       }
     }

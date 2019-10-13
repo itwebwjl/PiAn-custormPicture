@@ -1,17 +1,6 @@
 <template>
   <div class="financing-detail">
     <van-tabs sticky v-model="active" swipeable title-active-color="#FF7635" title-inactive-color="#666666" color="#FF7635" line-width=".56rem" line-height=".02rem">
-      <!-- <van-tab v-for="(item,index) in tabs" :title="item" :key="index">
-        <div v-show="active == 0">
-            <financDes></financDes>
-        </div>
-        <div v-show="active == 1">
-            
-        </div>
-        <div v-show="active == 2">
-           
-        </div>
-      </van-tab>-->
       <van-tab title="信托融资">
         <financDes></financDes>
       </van-tab>
@@ -48,7 +37,7 @@
   export default {
     data() {
       return {
-        active: 1,
+        active: 0,
       };
     },
     components: {

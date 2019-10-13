@@ -2,7 +2,7 @@
   <div class="financ-des">
     <div class="one">
       <div class="one-title flex-rc-cc">债权融资各年度总额趋势</div>
-      <div id="chart1" style="height:3rem;"></div>
+      <div id="chart1" style="height:3rem"></div>
     </div>
     <div class="two">
       <div class="two-title flex-rb-cc">
@@ -46,14 +46,80 @@
           // title: {
           //   text: "国庆节快乐"
           // },
+
+          axisLine: {
+            lineStyle: {
+              // opacity:0,
+            }
+          },
+          splitLine: {
+            show: false
+          },
+          grid: {
+            left:'20',
+            top:'20',
+            bottom:'20',
+            right:'20',
+            containLabel: true
+          },
+          label: {
+            // show:true,
+          },
+          // lineStyle: {
+          //   width: 1000,
+          //   shadowColor: "#4997FC",
+          //   shadowBlur: 20,
+          //   shadowOffsetY: 20
+          // },
+          // itemStyle: {
+          //   color: "#4997FC",
+          //   shadowColor: "rgba(0, 0, 0, 0.5)",
+          //   shadowBlur: 10,
+          //   borderWidth: 5
+          //   // shadowOffsetY:10,
+          // },
+          axisTick: {
+            show: true
+          },
           tooltip: {
             trigger: "axis"
           },
           xAxis: {
-            data: ["2015", "2016", "2017", "2018", "2019"]
+            data: ["2015", "2016", "2017", "2018", "2019"],
+            type: "category",
+            boundaryGap: false,
+            axisLabel: {
+              margin: 30,
+              color: "#999999"
+            },
+            axisLine: {
+              show: false
+            },
+            axisTick: {
+              show: false
+            },
+            splitLine: {
+              show: false
+            }
           },
           yAxis: {
-            name: ""
+            show: true,
+            // name: "",
+            axisLine: {
+              show: false
+            },
+            axisTick: {
+              show: false
+            },
+            splitLine: {
+              show: true,
+              lineStyle: {
+                color: "#EDEDED"
+              }
+            },
+            axisLabel: {
+              show: false
+            }
           },
           // legend: {
           //   top: 0,
@@ -64,8 +130,35 @@
             {
               name: "1",
               type: "line",
+              lineStyle: {
+                  color: "#4997FC",       
+              },
+              itemStyle: {
+                borderColor: "#4997FC",
+                borderWidth: 2
+              },
+              areaStyle: {
+                color: new echarts.graphic.LinearGradient(
+                  0,
+                  0,
+                  0,
+                  1,
+                  [
+                    {
+                      offset: 0,
+                      color: "#4997FC"
+                    },
+                    {
+                      offset: 1,
+                      color: "#ffffff"
+                    }
+                  ],
+                  false
+                )
+              },
               data: [20, 36, 10, 10, 20]
             }
+
             // {
             //   name: "2",
             //   type: "line",
@@ -92,13 +185,13 @@
 <style lang="scss" scoped>
   .financ-des {
     margin-top: 0.1rem;
-    padding-bottom: .27rem;
+    padding-bottom: 0.27rem;
     .one {
       background-color: #fff;
       .one-title {
         color: #333333;
         font-weight: bold;
-        height: .5rem;
+        height: 0.5rem;
       }
     }
     .two {
