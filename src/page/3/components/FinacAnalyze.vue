@@ -11,6 +11,9 @@
       <van-tab title="渠道分析">
         <div v-show="active == 0">
           <div class="one">
+            <div class="flex-rc-cc chart2-title">
+              各融资渠道分析图
+            </div>
             <div id="chart2" style="height:3rem;"></div>
           </div>
           <div class="two">
@@ -88,6 +91,9 @@
         chart2: null,
         chart3: null,
         chart2Options: {
+          tooltip: {
+            trigger: "none"
+          },
           title: {
             text: "30亿元",
             subtext: "企业融资总额",
@@ -104,14 +110,16 @@
             }
           },
           grid: {
-            top: 0,
-            left: 0,
-
+            left: "20",
+            top: "10",
+            bottom: "20",
+            right: "20",
+            containLabel: true
           },
           legend: {
             bottom: 0,
             left: "center",
-            itemGap: 20,
+            itemGap: 25,
             itemWidth: 10,
             itemHeight: 10,
             data: [
@@ -277,7 +285,15 @@
       background: #fff;
       margin-top: 0.1rem;
       padding: 0 0.15rem;
-
+      position: relative;
+      .chart2-title {
+        color: #333333;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        top: .2rem;
+        font-weight: bold;
+      }
       .titile {
         color: #333333;
         height: 0.5rem;

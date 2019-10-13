@@ -1,7 +1,7 @@
 <template>
   <div class="financ-des">
     <div class="one">
-      <div class="one-title flex-rc-cc">债权融资各年度总额趋势</div>
+      <!-- <div class="one-title flex-rc-cc">债权融资各年度总额趋势</div> -->
       <div id="chart1" style="height:3rem"></div>
     </div>
     <div class="two">
@@ -43,54 +43,35 @@
       return {
         chart1: null,
         chart1Options: {
-          // title: {
-          //   text: "国庆节快乐"
-          // },
-
-          axisLine: {
-            lineStyle: {
-              // opacity:0,
-            }
+          tooltip: {
+            trigger: "axis"
+          },
+          title: {
+            text: "债权融资各年度总额趋势",
+            left: "center",
+            top: 20
           },
           splitLine: {
             show: false
           },
           grid: {
-            left:'20',
-            top:'20',
-            bottom:'20',
-            right:'20',
+            left: "20",
+            top: "60",
+            bottom: "20",
+            right: "20",
             containLabel: true
           },
           label: {
             // show:true,
-          },
-          // lineStyle: {
-          //   width: 1000,
-          //   shadowColor: "#4997FC",
-          //   shadowBlur: 20,
-          //   shadowOffsetY: 20
-          // },
-          // itemStyle: {
-          //   color: "#4997FC",
-          //   shadowColor: "rgba(0, 0, 0, 0.5)",
-          //   shadowBlur: 10,
-          //   borderWidth: 5
-          //   // shadowOffsetY:10,
-          // },
-          axisTick: {
-            show: true
-          },
-          tooltip: {
-            trigger: "axis"
           },
           xAxis: {
             data: ["2015", "2016", "2017", "2018", "2019"],
             type: "category",
             boundaryGap: false,
             axisLabel: {
-              margin: 30,
-              color: "#999999"
+              margin: 20,
+              color: "#999999",
+              fontSize: 14
             },
             axisLine: {
               show: false
@@ -121,17 +102,12 @@
               show: false
             }
           },
-          // legend: {
-          //   top: 0,
-          //   right: "5%",
-          //   data: ["1", "2", "3"]
-          // },
           series: [
             {
-              name: "1",
               type: "line",
+              symbolSize: 10, //折线点的大小
               lineStyle: {
-                  color: "#4997FC",       
+                color: "#4997FC"
               },
               itemStyle: {
                 borderColor: "#4997FC",
@@ -156,19 +132,8 @@
                   false
                 )
               },
-              data: [20, 36, 10, 10, 20]
+              data: [150, 136, 120, 200, 120]
             }
-
-            // {
-            //   name: "2",
-            //   type: "line",
-            //   data: [2, 30, 1, 10, 3, 30]
-            // },
-            // {
-            //   name: "3",
-            //   type: "line",
-            //   data: [10, 30, 1, 2, 10, 20]
-            // }
           ]
         }
       };
