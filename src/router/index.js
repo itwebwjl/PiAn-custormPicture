@@ -38,10 +38,6 @@ export default new Router({
       component: resolve => require(['../page/biangengxinxi.vue'], resolve)
     },
     {
-      path: '/lishihezuo',
-      component: resolve => require(['../page/lishihezuo.vue'], resolve)
-    },
-    {
       path: '/customer',
       component: resolve => require(['../frame/customerFrame.vue'], resolve),
       children: [{

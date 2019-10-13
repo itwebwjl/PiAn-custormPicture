@@ -55,12 +55,15 @@
       return {
         selectedTab: 1,
         tabs: [{
-          name: '客户资料'
+          name: '客户资料',
+          path: ''
         }, {
-          name: '集团合作'
+          name: '集团合作',
+          path: '/customer/cooperation'
         }, {
           name: '战略方案',
-          disabled: true
+          disabled: true,
+          path: ''
         }]
       }
     }
