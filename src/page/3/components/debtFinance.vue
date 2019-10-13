@@ -80,41 +80,62 @@
         active: 0,
         chart5: null,
         chart5Options: {
-          title: {
-            text: "境内债券融资剩余期限分析图",
-            left: "center"
-          },
           tooltip: {
             trigger: "axis"
           },
           xAxis: {
-            data: ["银行", "产险", "养老险", "租赁"]
+            data: ['0-3个月', '3-6个月', '6-9个月', '9-12个月', '1年以上', '其他'],
+            axisLine: {
+              show: false
+            },
+            axisTick: {
+              show: false
+            },
+            axisLabel: {
+              color: '#999',
+              interval: 0
+            }
           },
           yAxis: {
-            name: "个"
-          },
-          // legend: {
-          //   top: 0,
-          //   right: "5%",
-          //   data: ["1", "2", "3"]
-          // },
-          series: [
-            {
-              name: "1",
-              type: "bar",
-              data: [12, 5, 4, 4]
+            name: "万元",
+            axisLine: {
+              show: false
+            },
+            axisTick: {
+              show: false
+            },
+            axisLabel: {
+              show: false
+            },
+            splitLine: {
+              lineStyle: {
+                color: '#ededed'
+              }
             }
-            // {
-            //   name: "2",
-            //   type: "bar",
-            //   data: [2, 30, 1, 10, 3, 30]
-            // },
-            // {
-            //   name: "3",
-            //   type: "bar",
-            //   data: [10, 30, 1, 2, 10, 20]
-            // }
-          ]
+          },
+          grid: {
+            top: 40,
+            left: 20,
+            right: 0
+          },
+          series: [{
+            type: "bar",
+            data: [2000, 1000, 15000, 10000, 5000, 1800],
+            label: {
+              show: true,
+              position: 'top',
+              color: '#999'
+            },
+            itemStyle: {
+              color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                offset: 0,
+                color: "#CBE5FF" // 0% 处的颜色
+              }, {
+                offset: 1,
+                color: "#63ACFF" // 60% 处的颜色
+              }], false)
+            }
+          }]
         }
       };
     },
@@ -125,11 +146,12 @@
       });
     },
     methods: {
-      switchTab() {},
-      onClickDisabled(name,title){
-         this.$toast(title + '已被禁用');
+      switchTab() {
       },
-      toPushDebtDetail(){
+      onClickDisabled(name, title) {
+        this.$toast(title + '已被禁用');
+      },
+      toPushDebtDetail() {
         this.$router.push('/debtDetail')
       }
     }
@@ -140,6 +162,7 @@
   .debt-finance {
     .one {
       margin-top: 0.1rem;
+
       .middle {
         background: rgba(247, 247, 247, 1);
         border-top: 1px solid rgba(232, 232, 232, 1);
@@ -148,73 +171,89 @@
         padding: 0 0.15rem;
         height: 0.6rem;
       }
+
       .bottom {
         height: 0.56rem;
         background: #fff;
         padding: 0 0.15rem;
       }
+
       .register {
         font-size: 0.13rem;
         flex: 2;
+
         &.bot {
           color: #333;
           font-size: 0.14rem;
         }
       }
+
       .has-time {
         font-size: 0.13rem;
         flex: 2;
         text-align: center;
+
         &.bot {
           color: #333;
           font-size: 0.14rem;
         }
       }
+
       .total {
         font-size: 0.13rem;
         flex: 1;
+
         &.bot {
           color: #333;
           font-size: 0.14rem;
         }
       }
+
       .has-use {
         font-size: 0.13rem;
         flex: 1;
+
         &.bot {
           color: #333;
           font-size: 0.14rem;
         }
       }
     }
+
     .two {
       background-color: #fff;
       margin-top: 0.1rem;
     }
+
     .three {
       margin-top: 0.1rem;
+
       .middle {
         padding: 0 0.15rem;
         background: rgba(247, 247, 247, 1);
         border: 1px solid rgba(232, 232, 232, 1);
         height: 0.4rem;
+
         .th {
           flex: 1;
           color: #999999;
           font-size: 0.13rem;
         }
       }
+
       .bottom {
         background-color: #fff;
         padding: 0 .15rem;
+
         .tr {
           height: 0.55rem;
+
           .td {
             flex-shrink: 0;
             font-size: .14rem;
             flex: 1;
-            white-space:normal;
-            
+            white-space: normal;
+
             &.name {
               color: #507EDE;
             }
@@ -222,6 +261,7 @@
         }
       }
     }
+
     .title {
       height: 0.5rem;
       color: #333;
