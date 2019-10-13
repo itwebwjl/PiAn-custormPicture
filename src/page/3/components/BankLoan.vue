@@ -67,8 +67,8 @@
       </div>
     </div>
 
-    <van-popup v-model="isShowPick" position="bottom"> 
-       <van-picker confirm-button-text="完成" show-toolbar :columns="columns"/>
+    <van-popup v-model="isShowPick" position="bottom">
+      <van-picker confirm-button-text="完成" show-toolbar :columns="columns"/>
     </van-popup>
   </div>
 </template>
@@ -97,26 +97,53 @@
             trigger: "axis"
           },
           xAxis: {
-            data: ["银行", "产险", "养老险", "租赁"]
+            data: ["2015-03-01", "2015-03-01", "2015-03-01", "2015-03-01", "2015-03-01", "2015-03-01", "2015-03-01", "2015-03-01", "2015-03-01", "2015-03-01"],
+            axisLabel: {
+              rotate: 45,
+              fontSize: 7,
+              color: '#999'
+            }
           },
           yAxis: {
-            name: "个"
+            name: "授信额度(亿元)",
+            axisLine: {
+              show: false
+            },
+            axisTick: {
+              show: false
+            }
           },
           legend: {
             bottom: 0,
             left: "center",
-            data: ["1", "2"]
+            data: ["已使用", "未使用"]
           },
           series: [
             {
-              name: "1",
+              name: '已使用',
               type: "bar",
-              data: [12, 5, 4, 4]
+              stack: 'use',
+              data: [12, 5, 4, 4],
+              position: 'insideTop',
+              itemStyle: {
+                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                  offset: 0,
+                  color: "#CBE5FF" // 0% 处的颜色
+                }, {
+                  offset: 1,
+                  color: "#63ACFF" // 60% 处的颜色
+                }], false)
+              }
             },
             {
-              name: "2",
+              name: '未使用',
               type: "bar",
-              data: [2, 30, 1, 10, 3, 30]
+              stack: 'use',
+              data: [2, 30, 1, 10, 3, 30],
+              position: 'insideTop',
+              itemStyle: {
+                color: '#eee'
+              }
             }
             // {
             //   name: "3",
@@ -125,8 +152,7 @@
             // }
           ]
         },
-        isShowPick: false,
-        columns: ['2018-12-31', '2018-12-31', '2018-12-31','2018-12-31','2018-12-31'],
+        isShowPick: false
       };
     },
     methods: {
@@ -151,14 +177,18 @@
     .one {
       background: #fff;
       margin-top: 0.1rem;
+
       .one-bot {
         padding: 0 0.15rem;
+
         .end-time {
           height: 0.5rem;
           color: #333333;
+
           .txt {
             font-weight: bold;
           }
+
           .time {
             .left-arrow {
               // width: 50px;
@@ -166,23 +196,28 @@
               border: 0.08rem solid;
               border-color: #fff #000 #fff #fff;
             }
+
             .swiper {
               font-weight: bold;
               padding: 0 0.1rem;
             }
+
             .right-arrow {
               border: 0.08rem solid;
               border-color: #fff #fff #fff #000;
             }
           }
         }
+
         .item {
           padding-bottom: 0.15rem;
+
           .item-label {
             font-size: 0.14rem;
             flex: 1;
             color: #999999;
           }
+
           .item-txt {
             font-size: 0.14rem;
             flex: 1;
@@ -191,46 +226,57 @@
         }
       }
     }
+
     .two {
       margin-top: 0.1rem;
       background: #fff;
+
       .two-title {
         padding: 0 0.15rem;
         height: 0.5rem;
         color: #333;
         font-weight: bold;
+
         .two-title_left {
           color: #333;
           font-weight: bold;
         }
+
         .two-title_right {
         }
       }
+
       .middle {
         .middle-tr {
           padding: 0 0.15rem;
           height: 0.6rem;
           background: rgba(247, 247, 247, 1);
           border: 1px solid rgba(232, 232, 232, 1);
+
           .middle-th {
             color: #999999;
             flex: 1;
             font-size: 0.13rem;
+
             &:nth-of-type(1) {
               flex: 2;
             }
           }
         }
       }
+
       .bottom {
         padding: 0 0.15rem;
+
         .bottom-item {
           height: 0.56rem;
+
           .bottom-td {
             color: #333;
             font-size: 0.14rem;
             flex: 1;
             text-align: center;
+
             &:nth-of-type(1) {
               flex: 2;
             }

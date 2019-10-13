@@ -19,7 +19,7 @@ export default new Router({
     },
     {
       path: "/debtDetail",
-      component:resolve => require(['../page/3/debtDetail.vue'],resolve)
+      component: resolve => require(['../page/3/debtDetail.vue'], resolve)
     },
     {
       path: "/gudong",
@@ -38,8 +38,12 @@ export default new Router({
       component: resolve => require(['../page/biangengxinxi.vue'], resolve)
     },
     {
-      path: '/lishihezuo',
-      component: resolve => require(['../page/lishihezuo.vue'], resolve)
+      path: '/customer',
+      component: resolve => require(['../frame/customerFrame.vue'], resolve),
+      children: [{
+        path: '/customer/cooperation',
+        component: resolve => require(['../page/cooperation.vue'], resolve)
+      }]
     }
   ]
 })
