@@ -60,7 +60,7 @@
         </div>
       </van-tab>
     </van-tabs>
-    
+
     <van-popup v-model="isShowMonth" position="bottom">
       <van-picker confirm-button-text="完成" show-toolbar :columns="columns"/>
     </van-popup>
@@ -81,7 +81,7 @@
   export default {
     data() {
       return {
-        isShowMonth:false,
+        isShowMonth: false,
         active: 0,
         tabs: ["渠道分析", "期限分析"],
         columns: ['3个月', '半年', '一年'],
@@ -107,53 +107,75 @@
               type: "pie",
               radius: "55%",
               data: [
-                { value: 235, name: "JDG" },
-                { value: 274, name: "平安银行" },
-                { value: 310, name: "红衫资" },
-                { value: 335, name: "今日资产" },
-                { value: 400, name: "皇庭国际" },
-                { value: 400, name: "其他渠道" }
+                {value: 235, name: "JDG"},
+                {value: 274, name: "平安银行"},
+                {value: 310, name: "红衫资"},
+                {value: 335, name: "今日资产"},
+                {value: 400, name: "皇庭国际"},
+                {value: 400, name: "其他渠道"}
               ]
             }
           ]
         },
         chart3Options: {
-          // title: {
-          //   text: "国庆节快乐"
-          // },
           tooltip: {
             trigger: "axis"
           },
           xAxis: {
-            data: ["银行", "产险", "养老险", "租赁"]
+            data: ['0-3个月', '3-6个月', '6-9个月', '9-12个月', '1年以上', '其他'],
+            axisLine: {
+              show: false
+            },
+            axisTick: {
+              show: false
+            },
+            axisLabel: {
+              color: '#999',
+              interval: 0
+            }
           },
           yAxis: {
-            name: "个"
-          },
-          // legend: {
-          //   top: 0,
-          //   right: "5%",
-          //   data: ["1", "2", "3"]
-          // },
-          series: [
-            {
-              name: "1",
-              type: "bar",
-              data: [12, 5, 4, 4]
+            name: "万元",
+            axisLine: {
+              show: false
+            },
+            axisTick: {
+              show: false
+            },
+            axisLabel: {
+              show: false
+            },
+            splitLine: {
+              lineStyle: {
+                color: '#ededed'
+              }
             }
-            // {
-            //   name: "2",
-            //   type: "bar",
-            //   data: [2, 30, 1, 10, 3, 30]
-            // },
-            // {
-            //   name: "3",
-            //   type: "bar",
-            //   data: [10, 30, 1, 2, 10, 20]
-            // }
-          ]
+          },
+          grid: {
+            top: 40,
+            left: 20,
+            right: 0
+          },
+          series: [{
+            type: "bar",
+            data: [2000, 1000, 15000, 10000, 5000, 1800],
+            label: {
+              show: true,
+              position: 'top',
+              color: '#999'
+            },
+            itemStyle: {
+              color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                offset: 0,
+                color: "#CBE5FF" // 0% 处的颜色
+              }, {
+                offset: 1,
+                color: "#63ACFF" // 60% 处的颜色
+              }], false)
+            }
+          }]
         }
-      };
+      }
     },
     mounted() {
       this.$nextTick(() => {
@@ -170,7 +192,7 @@
           });
         }
       },
-      isShowMonthFn(){
+      isShowMonthFn() {
         this.isShowMonth = !this.isShowMonth;
       }
     }
@@ -183,16 +205,19 @@
       background: #fff;
       margin-top: 0.1rem;
       padding: 0 0.15rem;
+
       .titile {
         color: #333333;
         height: 0.5rem;
         font-weight: bold;
       }
+
       .month-wrap {
         .month-txt {
           color: #666666;
           font-size: 0.14rem;
         }
+
         .month {
           width: .75rem;
           height: .24rem;
@@ -203,38 +228,47 @@
         }
       }
     }
+
     .two {
       background: #fff;
       margin-top: 0.1rem;
+
       .two-title {
         height: 0.6rem;
         border-bottom: solid 1px rgba(232, 232, 232, 1);
         padding: 0 0.15rem;
+
         .two-th {
           flex: 1;
           color: #999999;
           font-size: 0.13rem;
           text-align: center;
+
           &:nth-of-type(2) {
             flex: 1.5;
           }
+
           &:nth-of-type(1) {
             flex: 0.5;
           }
         }
       }
+
       .two-item {
         margin: 0 0.15rem;
         height: 0.55rem;
         border-bottom: solid 1px rgba(232, 232, 232, 1);
+
         .two-td {
           color: #333333;
           font-size: 0.14rem;
           flex: 1;
           text-align: center;
+
           &:nth-of-type(2) {
             flex: 1.5;
           }
+
           &:nth-of-type(1) {
             flex: 0.5;
           }
